@@ -1,0 +1,42 @@
+package com.demo;
+
+
+
+public class ReplaceString {
+	public static void main(String args[]){
+		System.out.println(replaceString("20%20%x20%20", "%20", "c"));
+		
+	}
+	
+	
+	
+	
+	public static String replaceString(String s,String s1,String s2){
+		 StringBuilder newString = new StringBuilder();
+		 StringBuilder tempString = new StringBuilder();
+        char[] allChars = s.toCharArray();
+        char[] replChars = s1.toCharArray();
+        
+        for (int j = 0; j < allChars.length; j++) {
+            for (int i = tempString.length(); i < replChars.length;) {
+                if(allChars[j] == replChars[i] & (allChars.length - j >= replChars.length || tempString.length() > 0)){
+                		tempString.append(allChars[j]);
+	                    if(tempString.length() == replChars.length ){
+	                        newString.append(s2);
+	                        tempString.delete(0, tempString.toString().length());
+	                    }
+                    break;
+                }else{
+                	if(tempString.length() > 0){
+						newString.append(tempString).append(allChars[j]);
+						tempString.delete(0, tempString.toString().length());
+    	            }else{
+    	            	newString.append(allChars[j]);
+    	            }
+                    break;
+                }
+            }
+        }
+        return newString.toString();
+	}
+}
